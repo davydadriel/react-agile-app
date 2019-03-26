@@ -1,23 +1,29 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 //arrow function ES6
 const NavBar = (props) => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="#">{props.logo}</a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
+        <Link to='/'  className="navbar-brand">{props.logo}</Link>
+        
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
         </button>
+        
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-            <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+                <Link to='/releases'  className="nav-link">Releases</Link>
+                
             </li>
             <li className="nav-item">
-            <a className="nav-link" href="#">Link</a>
+            
+            <Link to='/backlog'  className="nav-link">Backlog</Link>
             </li>
             <li className="nav-item dropdown">
+            
             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown
             </a>
@@ -29,7 +35,7 @@ const NavBar = (props) => {
             </div>
             </li>
             <li className="nav-item">
-            <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                <Link to='/sprints'  className="nav-link">Sprints</Link>
             </li>
         </ul>
         <form className="form-inline my-2 my-lg-0">
