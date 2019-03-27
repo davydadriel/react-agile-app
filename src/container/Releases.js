@@ -1,9 +1,93 @@
-import React, {Component}from 'react';
+import React, { Component } from 'react';
 
-export default class Releases extends Component{
+import ReleaseForm from '../ui/ReleaseForm';
+
+export default class Releases extends Component {
+
+    //para inicializar variável de estado
+    constructor() {
+        super();
+        //O bind garante o acesso a referência dentro da função que estamos usando (estudar mais sobre isto). 
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {
+            releases: [
+                {
+                    id: 1,
+                    releaseName: 'Release 01',
+                    releaseDate: '01/01/2017'
+
+                },
+                {
+                    id: 2,
+                    releaseName: 'Release 02',
+                    releaseDate: '01/01/2018'
+
+                },
+                {
+                    id: 3,
+                    releaseName: 'Release 03',
+                    releaseDate: '01/01/2019'
+
+                },
+                {
+                    id: 4,
+                    releaseName: 'Release 04',
+                    releaseDate: '01/01/2020'
+
+                }
+            ]
+        }
+    }
+    //função que é passada como parâmetro para o componente ReleaseForm
+    handleSubmit(e, {name, date}) {
+        console.log('Print here')
+        e.preventDefault();
+        var state = this.state;
+        var myRelease = {
+            id: state.releases.length + 1,
+            releaseName: name, 
+            releaseDate: date
+        }
+        this.setState({releases: this.state.releases.concat(myRelease)});
+        console.log(name);
+        console.log(date);
+    }
+
     render() {
         return (
-            <h1>Releases</h1>
+            <div className='container' style={{paddingTop: '25px'}}>
+                <ReleaseForm submitHandler={this.handleSubmit}/>
+
+                <table className="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Release Name</th>
+                            <th scope="col">Release Date</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.releases.map((release, index) => {
+
+                            return (
+
+                                <tr key={release.id}>
+                                    <th scope="row">{release.id}</th>
+                                    <td>{release.releaseName}</td>
+                                    <td>{release.releaseDate}</td>
+                                    <td><button type="button" className="btn btn-danger">Remover</button></td>
+                                </tr>
+                            )
+
+                        })
+                        }
+
+
+
+                    </tbody>
+                </table>
+            </div>
         );
     }
 }

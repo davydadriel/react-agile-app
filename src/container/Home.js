@@ -2,6 +2,7 @@
 import React, { Component   } from 'react';
 
 import HomeCard from '../ui/HomeCard';
+import {hashHistory} from 'react-router';
 
 export default class Home extends Component{
     //Quando extender de Component a unica obrigação é o método render.
@@ -11,17 +12,17 @@ export default class Home extends Component{
     homeCardReleases = {
         title: 'Releases',
         text: 'Manage Releases',
-        action: () => alert('clicou')
+        action: () => hashHistory.push('/releases')
     }
     homeCardBacklog = {
         title: 'Backlog',
         text: 'Manage Backlog',
-        action: () => alert('clicou')
+        action: () => hashHistory.push('/backlog')
     }
     homeCardSprints = {
         title: 'Sprints',
         text: 'Manage Sprints',
-        action: () => alert('clicou')
+        action: () => hashHistory.push('/sprints')
     }
 
     render(){
